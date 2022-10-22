@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">添加用户</h3>
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal" method="post">
+          {% csrf_token %}
+          {% for field in form %}
+          <div class="form-group" >
+            <label>{{ field.label }}</label>
+              {{ field }}
+              <span style="color: red">{{ field.errors.0 }}</span>
+          </div>
+          {% endfor %}
+          <div class="form-group">
+              <button type="submit" class="btn btn-primary" style= "text-align: left " >保存</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+   <script>
+    $(function (){
+        $('#id_create_time').datetimepicker({
+            format: 'yyyy-mm-dd',
+            startDate:'0',
+            language:'zh-CN',
+            autoclose:true
+        });
+    })
+  </script>
+{% endblock %}
